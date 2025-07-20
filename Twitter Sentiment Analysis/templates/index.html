@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Twitter Sentiment Analysis</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+        }
+        .container {
+            text-align: center;
+            background: white;
+            padding: 50px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+        }
+        .input-box {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .button {
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .button:hover {
+            background-color: #0056b3;
+        }
+        .emoji {
+            font-size: 50px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Twitter Sentiment Analysis</h1>
+        <form id="sentimentForm">
+            <textarea id="tweetInput" class="input-box" rows="4" placeholder="Enter your tweet here..."></textarea>
+            <br>
+            <button type="submit" class="button">Analyze Sentiment</button>
+        </form>
+        <div id="result" class="emoji"></div>
+    </div>
+
+    <script>
+        document.getElementById('sentimentForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const tweet = document.getElementById('tweetInput').value;
+            
+            let sentiment;
+            if (tweet.includes('love') || tweet.includes('great') || tweet.includes('fantastic') || tweet.includes('happy')) {
+                sentiment = 'positive';
+            } else if (tweet.includes('bad') || tweet.includes('terrible') || tweet.includes('sad') || tweet.includes('angry')) {
+                sentiment = 'negative';
+            } else {
+                sentiment = 'neutral';
+            }
+
+            const resultDiv = document.getElementById('result');
+            if (sentiment === 'positive') {
+                resultDiv.innerHTML = '&#x1F60A';
+                sentimentDisplay.textContent = 'Positive Sentiment';
+            } else if (sentiment === 'neutral') {
+                resultDiv.innerHTML = '&#x1F610';
+                sentimentDisplay.textContent = 'Neutral Sentiment';
+            } else if (sentiment === 'negative') {
+                resultDiv.innerHTML = '&#x1F622';
+                sentimentDisplay.textContent = 'Negative Sentiment';
+            }
+        });
+    </script>
+</body>
+</html>
